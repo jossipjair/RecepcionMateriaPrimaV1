@@ -47,5 +47,10 @@ public class E_Cultivo {
         this.cult_Descr = cult_Descr;
     }
     
+    @Override
+    public String toString()
+    {
+        return getCult_Descr();
+    }
     
 }

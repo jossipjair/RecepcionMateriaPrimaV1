@@ -56,6 +56,9 @@ public class E_Variedad {
     public void setVari_Descr(String vari_Descr) {
         this.vari_Descr = vari_Descr;
     }
-    
+    @Override
+    public String toString(){
+        return getVari_Descr();
+    }
     
 }

@@ -11,7 +11,7 @@ import javax.swing.JOptionPane;
  *
  * @author jescalaya
  *
- * Para TI =D
+ * Para TI =D ♥
  *
  */
 public class Conexion {
@@ -22,7 +22,9 @@ public class Conexion {
     public Conexion() {
         try {
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-            conexion = (Connection) DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=ControlRecepcion;integratedSecurity = true;");
+            //conexion = (Connection) DriverManager.getConnection("jdbc:sqlserver://192.168.2.186:1433;databaseName=ControlRecepcion; user = jossip; password = jossip1234567");
+            //conexion = (Connection) DriverManager.getConnection("jdbc:sqlserver://192.168.2.199:1433;databaseName=ControlRecepcion; user = jossip; password = jossip1234567");
+            conexion = (Connection) DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=ControlRecepcion; user = jescalaya; password = jossip");
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "¡Problema con la conexión!\n" + ex);
         } catch (ClassNotFoundException ex) {
@@ -39,15 +41,6 @@ public class Conexion {
 
     public Connection getConexion() {
         return conexion;
-    }
-
-    public void getConectar() {
-        /*try {
-            getInstancia().getConexion().close();
-        } catch (SQLException ex) {
-            Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
-        }*/
-
     }
 
     public void getDesconectar() {

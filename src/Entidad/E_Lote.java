@@ -10,6 +10,7 @@ package Entidad;
  * @author jescalaya
  */
 public class E_Lote {
+
     private int idLote;
     private E_Estado idEstado;
     private E_Sucursal idSucursal;
@@ -76,6 +77,9 @@ public class E_Lote {
     public void setLote_NCort(String lote_NCort) {
         this.lote_NCort = lote_NCort;
     }
-    
-    
+
+    @Override
+    public String toString() {
+        return getLote_NCort();
+    }
 }

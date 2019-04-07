@@ -57,5 +57,9 @@ public class E_Sucursal {
         this.sucu_Descr = sucu_Descr;
     }
     
+    @Override
+    public String toString(){
+        return getSucu_Descr();
+    }
     
 }

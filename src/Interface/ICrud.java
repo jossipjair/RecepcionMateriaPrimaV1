@@ -15,7 +15,8 @@ public interface ICrud<Clase> {
     
     public String insertar(Clase c);
     public String actualizar(Clase c);
-    public String darBaja (Object key);
+    public String darBaja (Clase c);
     public List<Clase> listarRegistros();
-    public List<Clase> listarBusquedaRegistro();
+    public List<Clase> listarBusquedaRegistro(int buscar);
+    public List<Object[]> listarRegitrosObject();
 }

@@ -14,7 +14,6 @@ CREATE TABLE ESTADO
 )
 GO
 
-
 CREATE TABLE EMPRESA
 (
 	idEmpresa INT NOT NULL IDENTITY,
@@ -94,18 +93,18 @@ CREATE TABLE LOTE
 GO
 
 
-CREATE TABLE RECEPCION_FRUTA
+CREATE TABLE RECEPCION_PALTA
 (
-	idRecepcion INT NOT NULL IDENTITY,
+	idRecepcionPalta INT NOT NULL IDENTITY,
 	idLote INT NOT NULL,
 	idEstado INT NOT NULL,
-	rFrut_Fech_Pesa DATETIME NOT NULL,
-	rFrut_Guia_Remis VARCHAR(20) NOT NULL,
-	rFrut_Viaje VARCHAR(4) NOT NULL,
-	rFrut_Obser VARCHAR(150) NOT NULL,
-	rFrut_esProcesado BIT,
-	CONSTRAINT pk_Recepcion
-	PRIMARY KEY(idRecepcion),
+	rPalta_FechRegistro DATETIME NOT NULL,
+	rPalta_Guia_Remis VARCHAR(20) NOT NULL,
+	rPalta_Viaje VARCHAR(100) NOT NULL,
+	rPalta_Obser VARCHAR(150) NOT NULL,
+
+	CONSTRAINT pk_RecepcionPalta
+	PRIMARY KEY(idRecepcionPalta),
 	CONSTRAINT fk_Lote_Recepcion
 	FOREIGN KEY(idLote) REFERENCES Lote(idLote),
 	CONSTRAINT fk_Estado_RecepcionFruta
@@ -114,24 +113,96 @@ CREATE TABLE RECEPCION_FRUTA
 GO
 
 
-CREATE TABLE DETALLE_RECEPCION
+CREATE TABLE DETALLE_RECEPCION_PALTA
 (
-	idDetalleRecepcion INT NOT NULL IDENTITY,
-	idRecepcion INT NOT NULL,
-	dRec_CoBar VARCHAR(100) NOT NULL,
-	dRec_Fech_Proc DATETIME NOT NULL,
-	dRec_Tara NUMERIC(15,2) NOT NULL,
-	dRec_Peso_Bruto NUMERIC(15,4) NOT NULL,
-	dRec_Canti INT NOT NULL,
-	dRec_Peso NUMERIC(15,4) NOT NULL, 
-	dRec_PTota NUMERIC(15,4) NOT NULL, 
-	dRec_PNeto NUMERIC(15,4) NOT NULL, 
-	dRec_esReproceso BIT,
-
-	CONSTRAINT pk_DetalleRecepcion
-	PRIMARY KEY(idDetalleRecepcion),
+	idDetalleRecepcionPalta INT NOT NULL IDENTITY,
+	idRecepcionPalta INT NOT NULL,
+	idEstado INT NOT NULL,
+	dRPalta_CoBar VARCHAR(100) NOT NULL,
+	dRPalta_Fech_Pesa DATETIME NOT NULL,
+	dRPalta_Fech_Proc DATETIME,
+	dRPalta_Tara NUMERIC(15,2) NOT NULL,
+	dRPalta_Peso_Bruto NUMERIC(15,2) NOT NULL,
+	dRPalta_Canti INT NOT NULL,
+	dRPalta_Peso NUMERIC(15,2) NOT NULL, 
+	dRPalta_PTota NUMERIC(15,2) NOT NULL, 
+	dRPalta_PNeto NUMERIC(15,2) NOT NULL, 
+	dRPalta_esReproceso BIT,
+	dRPalta_esProcesado BIT,
+	dRPalta_Observacion VARCHAR(100),
+	CONSTRAINT pk_DetalleRecepcionPalta
+	PRIMARY KEY(idDetalleRecepcionPalta),
+	CONSTRAINT fk_Estado_DetalleRecepcion
+	FOREIGN KEY(idEstado) REFERENCES ESTADO(idEstado),
 	CONSTRAINT fk_Recepcion_DetalleRecepcion
-	FOREIGN KEY(idRecepcion) REFERENCES RECEPCION_FRUTA(idRecepcion)
+	FOREIGN KEY(idRecepcionPalta) REFERENCES RECEPCION_PALTA(idRecepcionPalta),
+	UNIQUE (dRPalta_CoBar)
 )
 GO
 
+
+CREATE TABLE USUARIO
+(
+	idUsuario INT NOT NULL IDENTITY,
+	usua_usuario VARCHAR(20) NOT NULL,
+	usua_password VARCHAR(20) NOT NULL,
+	CONSTRAINT pk_Usuario
+	PRIMARY KEY(idUsuario)
+)
+GO
+
+CREATE TABLE PRIVILEGIO
+(
+	idPrivilegio INT NOT NULL IDENTITY,
+	idUsuario INT NOT NULL,
+	priv_DescTabla VARCHAR(100) NOT NULL,
+	priv_Estado BIT NOT NULL,
+	CONSTRAINT pk_Privilegio
+	PRIMARY KEY(idPrivilegio),
+	CONSTRAINT fk_Usuario_Privilegio
+	FOREIGN KEY(idUsuario) REFERENCES USUARIO(idUsuario)
+)
+GO
+
+CREATE TABLE VERSION_SOFTWARE
+(
+	idVersionSoftware INT NOT NULL IDENTITY,
+	verSoft_Descr VARCHAR(20) NOT NULL,
+	CONSTRAINT pk_VersionSoftware
+	PRIMARY KEY(idVersionSoftware)
+)
+GO
+/*
+SELECT dr.idDetalleRecepcion, dr.dRec_Fech_Pesa, dr.dRec_Fech_Proc, dr.dRec_Tara, dr.dRec_Peso_Bruto, dr.dRec_Canti,
+		dr.dRec_Peso, dr.dRec_PTota, dr.dRec_PNeto, dr.dRec_esReproceso, dr.dRec_esProcesado
+FROM DETALLE_RECEPCION AS dr INNER JOIN RECEPCION_FRUTA AS rf ON dr.idRecepcion = rf.idRecepcion
+GO
+
+--REIMPRIMIR PALETA
+CREATE PROCEDURE spReimprimirPaleta
+@FechaInicio DATE,
+@FechaFin DATE
+AS BEGIN
+SELECT 
+		lot.lote_NCort AS [LOTE],
+		rf.rFrut_Guia_Remis AS [GUIA DE REMISION] ,
+		rf.rFrut_Viaje AS [VIAJE],
+		dr.dRec_Fech_Pesa AS [FECHA PESADO], 
+		dr.dRec_Fech_Proc AS [FECHA PROCESO], 
+		dr.dRec_Tara AS [TARA],  
+		dr.dRec_Peso_Bruto AS [PESO BRUTO], 
+		dr.dRec_Canti AS [JABAS],
+		dr.dRec_Peso AS [PESO], 
+		dr.dRec_PTota AS [PESO TOTAL], 
+		dr.dRec_PNeto AS [PESO NETO], 
+		dr.dRec_esReproceso AS [REPROCESO], 
+		dr.dRec_esProcesado AS [PROCESADO],
+		dr.dRec_CoBar AS [COD. BARRA]
+FROM 
+		DETALLE_RECEPCION AS dr 
+		INNER JOIN RECEPCION_FRUTA AS rf ON dr.idRecepcion = rf.idRecepcion
+		INNER JOIN LOTE AS lot ON rf.idLote = lot.idLote
+WHERE 
+		dr.dRec_Fech_Pesa BETWEEN @FechaInicio AND @FechaFin
+END
+GO*/

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
+<Form version="1.9" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <NonVisualComponents>
     <Menu class="javax.swing.JMenuBar" name="jMenuBar1">
       <SubComponents>
@@ -11,6 +11,58 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Mantenimiento Tablas"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mnuMantenimientoTablasActionPerformed"/>
+          </Events>
+          <SubComponents>
+            <MenuItem class="javax.swing.JMenuItem" name="mnuMantenimientoTablasEmpresa">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Taba Empresa"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mnuMantenimientoTablasEmpresaActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="mnuMantenimientoTablasSucursal">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Tabla Sucursal"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mnuMantenimientoTablasSucursalActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="mnuMantenimientoTablasCultivo">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Tabla Cultivo"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mnuMantenimientoTablasCultivoActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="mnuMantenimientoTablasVariedad">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Tabla Variedad"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mnuMantenimientoTablasVariedadActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="mnuMantenimientoTablasLote">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Tabla Lote"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mnuMantenimientoTablasLoteActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JPopupMenu$Separator" name="jSeparator1">
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="mnuMantenimientoTablasSalir">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Salir"/>
+              </Properties>
+            </MenuItem>
+          </SubComponents>
         </Menu>
         <Menu class="javax.swing.JMenu" name="mnuMovimientos">
           <Properties>
@@ -20,18 +72,49 @@
             <Property name="text" type="java.lang.String" value="Movimientos"/>
           </Properties>
           <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="mnuMovimientosRegistroRecepcion">
+            <Menu class="javax.swing.JMenu" name="mnuMovimientoRegistroMateriaPrima">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Registro Recepci&#xf3;n de Materia Prima"/>
+                <Property name="text" type="java.lang.String" value="Recepci&#xf3;n de Materia Prima"/>
               </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mnuMovimientosRegistroRecepcionActionPerformed"/>
-              </Events>
-            </MenuItem>
+              <SubComponents>
+                <MenuItem class="javax.swing.JMenuItem" name="mnuMovimientoRegistroMateriaPrimaArandano">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Proceso Arandano"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mnuMovimientoRegistroMateriaPrimaArandanoActionPerformed"/>
+                  </Events>
+                </MenuItem>
+                <MenuItem class="javax.swing.JMenuItem" name="mnuMovimientoRegistroMateriaPrimaCitrico">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Proceso C&#xed;trico"/>
+                  </Properties>
+                </MenuItem>
+                <MenuItem class="javax.swing.JMenuItem" name="mnuMovimientoRegistroMateriaPrimaPalta">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Proceso Palta"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mnuMovimientoRegistroMateriaPrimaPaltaActionPerformed"/>
+                  </Events>
+                </MenuItem>
+                <MenuItem class="javax.swing.JMenuItem" name="mnuMovimientoRegistroMateriaPrimaUva">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Proceso Uva"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mnuMovimientoRegistroMateriaPrimaUvaActionPerformed"/>
+                  </Events>
+                </MenuItem>
+              </SubComponents>
+            </Menu>
             <MenuItem class="javax.swing.JMenuItem" name="mnuMovimientoRegistroReimprimirPaleta">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Reimprimir Paleta"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mnuMovimientoRegistroReimprimirPaletaActionPerformed"/>
+              </Events>
             </MenuItem>
           </SubComponents>
         </Menu>

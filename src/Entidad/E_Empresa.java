@@ -10,6 +10,7 @@ package Entidad;
  * @author jescalaya
  */
 public class E_Empresa {
+
     private int idEmpresa;
     private E_Estado idEstado;
     private String empr_Descr;
@@ -46,6 +47,9 @@ public class E_Empresa {
     public void setEmpr_Descr(String empr_Descr) {
         this.empr_Descr = empr_Descr;
     }
-    
-    
+
+    @Override
+    public String toString() {
+        return getEmpr_Descr();
+    }
 }
